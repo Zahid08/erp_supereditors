@@ -143,26 +143,23 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <input type="text"   class="form-control" name="cheque_no" id="cheque_no" placeholder="Cheque No./Transaction ID" >
                               </div>
                               <div class="col-sm-4">
-                                  <label>From Bank </label>
-                                 <input type = "text" class="form-control" name="from_bank" id="from_bank" placeholder="From Bank Details" >
+                                  <label>Bank Details </label>
+                                 <input type = "text" class="form-control" name="bank_details" id="bank_details" placeholder="From Bank Details" >
                               </div>
-                              <div class="col-sm-4">
-                                  <label>To Bank </label>
-                                 <input type = "text" class="form-control" name="to_bank" id="to_bank" placeholder="To Bank Details" >
-                              </div>
+
                               <div class="col-sm-4">
                                   <label>Amount Paid By</label>
                                  <input type="text" class="form-control" name="amount_paid_by" id="amount_paid_by" placeholder="Amount Paid By" >
                               </div>
-                              <div class="col-sm-12 mt-5">
+                              <div class="col-sm-12" style="margin-top: 10px;">
                                  <button type="submit" name="save" class="btn btn-primary" id="submitbtn">Save</button>
                               </div>
                            </div>
                         </form>
-
                   </div>
 
-                  <br>
+                   <hr/>
+
                 <div class=" card-title">
                     <form  method="post" action="">
                         <div class="row">
@@ -207,7 +204,6 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <th>Payment Date</th>
                                  <th>Party Name</th>
                                  <th>Amount Paid</th>
-                                 <th>Amount Adjusted</th>
                                  <th>Amount Paid By</th>
                                  <th>Mode of Payment</th>
                                  <th>Cheque No/DD No</th>
@@ -226,11 +222,10 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <td><?php echo date('d-m-Y', strtotime($supplierAdvanceDetails->payment_date)) ?></td>
                                  <td><?php echo $supplierAdvanceDetails->supplier_name ?></td>
                                  <td><?php echo $supplierAdvanceDetails->amount_paid ?></td>
-                                 <td><?php echo $supplierAdvanceDetails->amount_adjusted ?></td>
                                  <td><?php echo $supplierAdvanceDetails->amount_paid_by ?></td>
-                                 <td><?php echo $supplierAdvanceDetails->mode_of_payment ?></td>
+                                 <td><?php echo $supplierAdvanceDetails->payment_mode ?></td>
                                  <td><?php echo $supplierAdvanceDetails->cheque_no	?></td>
-                                 <td><?php echo $supplierAdvanceDetails->bank_detail ?></td>
+                                 <td><?php echo $supplierAdvanceDetails->bank_details ?></td>
                                  <td><a href="<?php echo base_url().'Payment_Paid_Entry_Supplier?vc='.$supplierAdvanceDetails->voucher_no.'&supplier='.$supplierAdvanceDetails->supplier_id.'&company='.$supplierAdvanceDetails->company_name ?>"><button class="btn btn-primary">Adjust</button></a></td>
                                 </tr>
                                 <?php } ?>
@@ -302,18 +297,27 @@ if(!empty($fromDate) && !empty($toDate)){
                    var partyName                =$('select#party_name').find(':selected').attr('dataselectedName');
                    var partyId                  =$('select#party_name').find(':selected').val();
 
-                   cuteAlert({
-                       type: "question",
-                       title: "SMS SENDING ALERT",
-                       message: "Do you want to send SMS & Email to this Party ?",
-                       confirmText: "Okay",
-                       cancelText: "Cancel",
-                       img:warning,
-                   }).then((e)=>{
-                       if ( e ==='confirm'){
-                           sendSms(obj.voucher_no,partyName,obj.amount_paid,obj.company_name,partyId);
-                       }
-                   });
+                   cuteToast({
+                       type: "success", // or 'info', 'error', 'warning'
+                       message: "Successfully Save Advance Payment",
+                       timer: 5000,
+                       img:successImage,
+                   })
+
+                   //location.reload();
+
+                   // cuteAlert({
+                   //     type: "question",
+                   //     title: "SMS SENDING ALERT",
+                   //     message: "Do you want to send SMS & Email to this Party ?",
+                   //     confirmText: "Okay",
+                   //     cancelText: "Cancel",
+                   //     img:warning,
+                   // }).then((e)=>{
+                   //     if ( e ==='confirm'){
+                   //         sendSms(obj.voucher_no,partyName,obj.amount_paid,obj.company_name,partyId);
+                   //     }
+                   // });
 
                    $('button#submitbtn').html('Save');
                    $('button#submitbtn').removeClass('not-clickable');

@@ -56,26 +56,23 @@ class Advance_payment_entry extends CI_Controller {
                WHERE s.is_active = 1 and s.supplier_id = $supID")->row();
 
 
-
-      $data=array( "voucher_no"=>$voucher_no,
+         $data=array( "voucher_no"=>$voucher_no,
                     "company_name" => $this->input->post('company_name'),
                        "payment_date"=>$this->input->post('payment_date'),
                        "supplier_id" => $this->input->post('party_name'),
-                     "amount_paid"=>$this->input->post('amount_paid'),
-                     "amount_adjusted"=>$this->input->post('amount_adjusted'),
+                        "amount_paid"=>$this->input->post('amount_paid'),
+                         "amount_adjusted"=>$this->input->post('amount_adjusted'),
                        "amount_paid_by" => $this->input->post('amount_paid_by'),
                        "payment_mode" => $this->input->post('payment_mode'),
                        "cheque_no" => $this->input->post('cheque_no'),
-                       "from_bank" => $this->input->post('from_bank'),
-                       "to_bank" => $this->input->post('to_bank'),
+                       "bank_details" => $this->input->post('bank_details'),
                        "is_active"=>1,
                        "created_by" =>  $this->session->userdata['user_id'],
-                 "created_date" => date("Y-m-d"));
-
+                        "created_date" => date("Y-m-d"));
 
             $response=$this->Advance_Payment_model->save_payment_data($data);
             $this->session->set_flashdata('advance_payment_entry', 'Data Saved Successfully');
- 
+
             if($response==true){
                 print_r(json_encode($data));
                 exit();
