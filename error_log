@@ -1,0 +1,3 @@
+[09-Dec-2023 08:20:19 UTC] PHP Fatal error:  Out of memory (allocated 819650560) (tried to allocate 798679040 bytes) in /home/nammatoi/public_html/soft.supereditors.in/application/views/user/enquirylist.php on line 213
+[09-Dec-2023 08:20:24 UTC] PHP Fatal error:  Out of memory (allocated 809164800) (tried to allocate 798679040 bytes) in /home/nammatoi/public_html/soft.supereditors.in/application/views/user/enquirylist.php on line 213
+[09-Dec-2023 08:20:33 UTC] PHP Fatal error:  Out of memory (allocated 807067648) (tried to allocate 798679040 bytes) in /home/nammatoi/public_html/soft.supereditors.in/application/views/user/enquirylist.php on line 213
