@@ -6,9 +6,9 @@
         <option value="$PROJECT_DIR$/tests" />
         <option value="$PROJECT_DIR$/application/libraries/dompdf/tests" />
         <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-font-lib/tests/FontLib" />
-        <option value="$PROJECT_DIR$/application/libraries/dompdf/tests" />
         <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-css-parser/tests" />
         <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-svg-lib/tests/Svg" />
+        <option value="$PROJECT_DIR$/application/libraries/dompdf/tests" />
         <option value="$PROJECT_DIR$/tests" />
       </list>
     </option>

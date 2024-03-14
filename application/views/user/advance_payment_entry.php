@@ -101,16 +101,13 @@ if(!empty($fromDate) && !empty($toDate)){
                                 </select>
                             </div>
                               <div class="col-sm-4">
-                                  <label>Voucher Number</label>
-                                 <input type = "text" class="form-control" name="voucher_no" id="voucher_no" placeholder="Voucher Number" readonly>
-                              </div>
-                              <div class="col-sm-4">
                                   <label>Payment Date</label>
-                                 <input type="text" onfocus="this.type='date'" class="form-control" name="payment_date" id="payment_date"  placeholder="Payment Date" >
+                                 <input type="text" onfocus="this.type='date'" class="form-control" name="payment_date" id="payment_date"  placeholder="Payment Date"  value="<?=date ('m/d/Y')?>">
                               </div>
                               <div class="col-sm-4">
                                   <label>Party Name</label>
                                  <select class="form-control" name="party_name"   id="party_name" required>
+                                     <option value="">Select Party Name</option>
                                     <?php foreach($supplierDetailsValue as $getsupplierDetails){ ?>
                                     <option value="<?php echo $getsupplierDetails->supplier_id ?>" dataselectedName="<?php echo $getsupplierDetails->supplier_name ?>"><?php echo $getsupplierDetails->supplier_name  ?></option>
                                     <?php } ?>
@@ -118,16 +115,12 @@ if(!empty($fromDate) && !empty($toDate)){
                               </div>
                               <div class="col-sm-4">
                                   <label>Advance Amount Paid</label>
-                                 <input type="text" onfocus="this.type='number'" class="form-control" name="amount_paid" id="amount_paid" placeholder="Amount Paid" >
+                                 <input type="text" onfocus="this.type='number'" class="form-control" name="amount_paid" id="amount_paid" placeholder="Amount Paid" required>
                               </div>
-                             <!-- <div class="col-sm-4">
-                                  <label>Amount Adjusted</label>
-                                 <input type="text" onfocus="this.type='number'" class="form-control" name="amount_adjusted" id="amount_adjusted" placeholder="Amount Adjusted" value="0" readonly>
-                              </div>-->
 
                               <div class="col-sm-4">
                                   <label>Mode of Payment</label>
-                                 <select type = "text" class="form-control" name="payment_mode" id="payment_mode"  >
+                                 <select type = "text" class="form-control" name="payment_mode" id="payment_mode"  required>
                                     <option value="">Mode of Payment</option>
                                     <option value="NEFT">NEFT</option>
                                     <option value="RTGS">RTGS</option>
@@ -144,7 +137,7 @@ if(!empty($fromDate) && !empty($toDate)){
                               </div>
                               <div class="col-sm-4">
                                   <label>Bank Details </label>
-                                 <input type = "text" class="form-control" name="bank_details" id="bank_details" placeholder="From Bank Details" >
+                                 <input type = "text" class="form-control" name="bank_details" id="bank_details" placeholder="From Bank Details" required>
                               </div>
 
                               <div class="col-sm-4">
@@ -208,7 +201,6 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <th>Mode of Payment</th>
                                  <th>Cheque No/DD No</th>
                                  <th>Bank Details</th>
-                                 <th>Adjust</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -226,7 +218,6 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <td><?php echo $supplierAdvanceDetails->payment_mode ?></td>
                                  <td><?php echo $supplierAdvanceDetails->cheque_no	?></td>
                                  <td><?php echo $supplierAdvanceDetails->bank_details ?></td>
-                                 <td><a href="<?php echo base_url().'Payment_Paid_Entry_Supplier?vc='.$supplierAdvanceDetails->voucher_no.'&supplier='.$supplierAdvanceDetails->supplier_id.'&company='.$supplierAdvanceDetails->company_name ?>"><button class="btn btn-primary">Adjust</button></a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
@@ -303,6 +294,9 @@ if(!empty($fromDate) && !empty($toDate)){
                        timer: 5000,
                        img:successImage,
                    })
+                   setTimeout(function() {
+                       location.reload();
+                   }, 1000); // 3000 milliseconds = 3 seconds
 
                    //location.reload();
 

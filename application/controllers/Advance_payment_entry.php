@@ -51,10 +51,16 @@ class Advance_payment_entry extends CI_Controller {
             $voucher_no = str_pad($maxid, 5, '0', STR_PAD_LEFT);
 
             $supID =  $this->input->post('party_name');
-               $supplierDetailsValue = $this->db->query("SELECT * FROM supplier s INNER JOIN 
-               supplier_contact_details sd ON sd.supplier_id = s.supplier_id
-               WHERE s.is_active = 1 and s.supplier_id = $supID")->row();
+           $supplierDetailsValue = $this->db->query("SELECT * FROM supplier s INNER JOIN 
+           supplier_contact_details sd ON sd.supplier_id = s.supplier_id
+           WHERE s.is_active = 1 and s.supplier_id = $supID")->row();
 
+               $companyName=$this->input->post('company_name');
+               if ($companyName=='SuperEditors'){
+                   $voucher_no='VSE'.$voucher_no;
+               }else if ($companyName=='MannaMenswear'){
+                   $voucher_no='VMW'.$voucher_no;
+               }
 
          $data=array( "voucher_no"=>$voucher_no,
                     "company_name" => $this->input->post('company_name'),
