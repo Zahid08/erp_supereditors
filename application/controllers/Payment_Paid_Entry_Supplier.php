@@ -13,11 +13,14 @@ class Payment_Paid_Entry_Supplier extends CI_Controller
     {
          if ($this->session->userdata['role'] == 1){
 
-
-             $InitialPayments = $this->db->query("SELECT p.purchase_supplier_id,SUM(netamount) as total_purchase_amount,s.created_by,s.created_date FROM purchase_supplier s
+             $InitialPayments = $this->db->query("SELECT p.purchase_supplier_id,SUM(netamt) as total_purchase_amount,s.created_by,s.created_date FROM purchase_supplier s
                                                 INNER JOIN purchase_item p ON p.purchase_supplier_id = s.purchase_supplier_id
                                                 WHERE p.purchase_supplier_id NOT IN (SELECT purchase_supplier_id FROM purchase_supplier_payment)
-                                                GROUP BY p.purchase_supplier_id")->result();
+                                                GROUP BY p.purchase_item_id")->result();
+
+//             echo "<pre>";
+//             print_r ($InitialPayments);
+//             exit();
 
                 foreach($InitialPayments as $getInitialPayments){
                     $initialPaymentData = array(

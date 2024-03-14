@@ -229,6 +229,7 @@ public function save_purchase_item_entry_data()
             'netamt' => $data['formData']['netamt'],
             'discountamount'=>$data['formData']['discountamount'],
             'created_by' => $this->session->userdata['user_id'],
+            'purchase_supplier_id'=>$data['formData']['supplier_name'],
             'created_date' => date("Y-m-d")
         );
 

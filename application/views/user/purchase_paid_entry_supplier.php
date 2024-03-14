@@ -5,20 +5,19 @@ if(isset($_POST['party_name'])){
 
     $supplier_name = $_POST['party_name'];
     $company_name = $_POST['company_name'];
-    
-    
+
     $getValuesQuery = $this->db->query("SELECT * FROM supplier s
                                              INNER JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
-                                             WHERE s.supplier_name LIKE '%$supplier_name%' AND a.company_name = '$company_name'   AND a.amount_adjusted <> a.amount_paid LIMIT 1")->result();
+                                             WHERE s.supplier_name LIKE '%$supplier_name%' AND a.company_name = '$company_name'  LIMIT 1")->result();
 
-    
     foreach($getValuesQuery as $getValuesQueryvalue){
         $voucher_no = $getValuesQueryvalue->voucher_no;
         $supplier_id = $getValuesQueryvalue->supplier_id;
-
     }
+
   redirect('Payment_Paid_Entry_Supplier?vc='.$voucher_no.'&supplier='.$supplier_id.'&company='.$company_name);
 }
+
 
 $voucher_no=$supplier_id='';
 if (isset($_GET['vc'])) {
@@ -27,7 +26,6 @@ if (isset($_GET['vc'])) {
 if (isset($_GET['supplier'])) {
     $supplier_id = $_GET['supplier'];
 }
-
 
 if(!empty($voucher_no) && !empty($supplier_id)){
     $where = "WHERE s.is_active = 1 AND a.supplier_id = $supplier_id AND a.voucher_no = $voucher_no";
@@ -39,6 +37,7 @@ $supplierDetailsValue = $this->db->query("SELECT * FROM supplier WHERE is_active
 $adjustmentDetails = $this->db->query("SELECT * FROM supplier s
                                              INNER JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
                                              $where")->result();
+
 if(!empty($voucher_no) && !empty($supplier_id)){
     foreach($adjustmentDetails as $getadjustmentDetails){
         $supplier_name = $getadjustmentDetails->supplier_name;
@@ -119,7 +118,7 @@ if ($initPayment){
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">Purchase Paid Entry</h3>
+                <h3 class="text-primary">Supplier Payment Entry</h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
@@ -149,8 +148,8 @@ if ($initPayment){
                                    <label>Company Name</label>
                                 <select class="form-control " name="company_name"   id="company_name" required>
                                     <option value="">Company Name</option>
-                                   <option value = "SuperEditors" <?php if($_GET['company'] == 'SuperEditors'){ ?> selected <?php } ?>>SuperEditors</option>
-                                    <option value = "MannaMenswear" <?php if($_GET['company'] == 'MannaMenswear'){ ?> selected <?php } ?> >MannaMenswear</option>
+                                    <option value = "SuperEditors" <?php if(isset($_GET['company'] ) && $_GET['company'] == 'SuperEditors'){ ?> selected <?php } ?>>SuperEditors</option>
+                                    <option value = "MannaMenswear" <?php if(isset($_GET['company']) && $_GET['company'] == 'MannaMenswear'){ ?> selected <?php } ?> >MannaMenswear</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
@@ -166,7 +165,11 @@ if ($initPayment){
                                 <br>
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
+                                <label>Voucher</label>
+                                <input type="text" class="form-control" name="" id="" value="<?php echo $voucher_no ?>" placeholder="Advance To Adjust" style="pointer-events: none" >
+                            </div>
+                            <div class="col-sm-2">
                                 <label>Amount To Adjust</label>
                                 <input type="text" class="form-control" name="amount_to_adjust" id="amount_to_adjust" value="<?php echo $amount_to_adjust ?>" placeholder="Advance To Adjust" value="<?php echo isset($_POST['advance_adjust']) ?$_POST['advance_adjust']:''?>" >
                             </div>
@@ -272,7 +275,7 @@ if ($initPayment){
                         <hr>
                         <br>
 
-                        <input type ="hidden" class="form-control" name="companyName" id="companyName"  placeholder="companyName"  value="<?php echo $_GET['company'];?>">
+                        <input type ="hidden" class="form-control" name="companyName" id="companyName"  placeholder="companyName"  value="<?php echo isset($_GET['company'])?$_GET['company']:'';?>">
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Total Amt Paid</label>
