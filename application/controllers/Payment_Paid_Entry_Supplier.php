@@ -74,7 +74,6 @@ class Payment_Paid_Entry_Supplier extends CI_Controller
                     $this->Purchase_model->payment_update($data, $purchase_supplier_payment_id);
                 }
             }
-
             $this->load->model('Supplier_Payment_model');
             $max = $this->Supplier_Payment_model->get_voucher_maxid();
             $maxid = $max+1;

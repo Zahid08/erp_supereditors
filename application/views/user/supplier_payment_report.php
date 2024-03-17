@@ -147,7 +147,6 @@ $getAllSupplier = $this->db->query("SELECT * FROM supplier_payment_entry $where 
                     </form>
                 </div>
                 <br>
-
                 <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
                 <div class="table-responsive">
                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">

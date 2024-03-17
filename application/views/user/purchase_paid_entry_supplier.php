@@ -102,6 +102,7 @@ if ($initPayment){
             display: none;
         }
     </style>
+
     <style>
         .form-control {
             height: 34px!important;

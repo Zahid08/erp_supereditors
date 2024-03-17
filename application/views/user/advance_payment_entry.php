@@ -40,6 +40,7 @@ if(!empty($fromDate) && !empty($toDate)){
                                              INNER JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
                                              $where  ORDER BY 1 DESC")->result();
    ?>
+
 <style>
     .form-control {
         height: 34px!important;
