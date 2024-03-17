@@ -64,6 +64,14 @@ $getAllSupplier = $this->db->query("SELECT * FROM supplier_payment_entry $where 
 </head>
 <body class="header-fix fix-sidebar">
 <!-- Main wrapper  -->
+<style>
+    .form-control {
+        height: 34px!important;
+    }
+    .dataTables_wrapper {
+        padding-top: 0!important;
+    }
+</style>
 <div id="main-wrapper">
     <!-- header header  -->
     <?php include("includes/header.php") ?>
@@ -90,8 +98,6 @@ $getAllSupplier = $this->db->query("SELECT * FROM supplier_payment_entry $where 
         <div class="container-fluid">
             <!-- Start Page Content -->
             <div class="card">
-                <h4 class="">Purchase </h4>
-                <br>
                 <div class=" card-title">
                     <form  method="post" action="">
                         <div class="row">
@@ -143,7 +149,7 @@ $getAllSupplier = $this->db->query("SELECT * FROM supplier_payment_entry $where 
                 <br>
 
                 <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
-                <div class="table-responsive m-t-40">
+                <div class="table-responsive">
                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>

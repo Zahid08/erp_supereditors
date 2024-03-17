@@ -40,6 +40,14 @@ if(!empty($fromDate) && !empty($toDate)){
                                              INNER JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
                                              $where  ORDER BY 1 DESC")->result();
    ?>
+<style>
+    .form-control {
+        height: 34px!important;
+    }
+    .dataTables_wrapper {
+        padding-top: 0!important;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -88,11 +96,9 @@ if(!empty($fromDate) && !empty($toDate)){
                <!-- Start Page Content -->
                <div class="card">
                   <div class="card-body">
-                     <h4 class="card-title">Supplier Advance Payment Entry  </h4>
-                     <hr>
                         <form method="post" action="<?php echo base_url() ?>Advance_payment_entry/save_advance_payment" id="advancePaymentForm">
                            <div class="row">
-                               <div class="col-sm-4">
+                               <div class="col-sm-3">
                                    <label>Company Name</label>
                                 <select class="form-control " name="company_name"   id="company_name" required>
                                     <option value="">Company Name</option>
@@ -100,11 +106,11 @@ if(!empty($fromDate) && !empty($toDate)){
                                     <option value = "MannaMenswear">MannaMenswear</option>
                                 </select>
                             </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Payment Date</label>
                                  <input type="text" onfocus="this.type='date'" class="form-control" name="payment_date" id="payment_date"  placeholder="Payment Date"  value="<?=date ('m/d/Y')?>">
                               </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Party Name</label>
                                  <select class="form-control" name="party_name"   id="party_name" required>
                                      <option value="">Select Party Name</option>
@@ -113,12 +119,12 @@ if(!empty($fromDate) && !empty($toDate)){
                                     <?php } ?>
                                  </select>
                               </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Advance Amount Paid</label>
                                  <input type="text" onfocus="this.type='number'" class="form-control" name="amount_paid" id="amount_paid" placeholder="Amount Paid" required>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Mode of Payment</label>
                                  <select type = "text" class="form-control" name="payment_mode" id="payment_mode"  required>
                                     <option value="">Mode of Payment</option>
@@ -131,16 +137,16 @@ if(!empty($fromDate) && !empty($toDate)){
                                     <option value="Phone Pay">Phone Pay</option>
                                  </select>
                               </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Cheque No/DD No</label>
                                  <input type="text"   class="form-control" name="cheque_no" id="cheque_no" placeholder="Cheque No./Transaction ID" >
                               </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Bank Details </label>
                                  <input type = "text" class="form-control" name="bank_details" id="bank_details" placeholder="From Bank Details" required>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-sm-3">
                                   <label>Amount Paid By</label>
                                  <input type="text" class="form-control" name="amount_paid_by" id="amount_paid_by" placeholder="Amount Paid By" >
                               </div>
@@ -187,7 +193,7 @@ if(!empty($fromDate) && !empty($toDate)){
                 </div>
                 <br>
 
-                  <div class="table-responsive m-t-40">
+                  <div class="table-responsive">
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                            <thead>
                               <tr>

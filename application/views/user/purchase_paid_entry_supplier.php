@@ -28,14 +28,14 @@ if (isset($_GET['supplier'])) {
 }
 
 if(!empty($voucher_no) && !empty($supplier_id)){
-    $where = "WHERE s.is_active = 1 AND a.supplier_id = $supplier_id AND a.voucher_no = $voucher_no";
+    $where = "WHERE s.is_active = 1 AND a.supplier_id = $supplier_id AND a.voucher_no ='$voucher_no'";
 }else{
     $where = "WHERE s.is_active = 1";
 }
 
 $supplierDetailsValue = $this->db->query("SELECT * FROM supplier WHERE is_active = 1")->result();
 $adjustmentDetails = $this->db->query("SELECT * FROM supplier s
-                                             INNER JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
+                                             left JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
                                              $where")->result();
 
 if(!empty($voucher_no) && !empty($supplier_id)){
@@ -49,7 +49,7 @@ if(!empty($voucher_no) && !empty($supplier_id)){
 
 
 if(!empty($supplier_id)){
-    $purchase_where = "where p.supplier_id = $supplier_id";
+    $purchase_where = "where pp.purchase_supplier_id = $supplier_id";
 }else{
     $purchase_where = '';
 }
@@ -60,7 +60,6 @@ if(!empty($supplier_id) && !empty($voucher_no) ){
                                              INNER JOIN supplier s ON s.supplier_id = p.supplier_id
                                              $purchase_where ORDER BY 1 DESC")->result();
 }
-
 
 $initPayment = $this->db->query("SELECT SUM(amount_adjusted) as amount_adjusted FROM supplier_payment_entry")->row();
 $adjustAmount=0;
@@ -103,6 +102,14 @@ if ($initPayment){
             display: none;
         }
     </style>
+    <style>
+        .form-control {
+            height: 34px!important;
+        }
+        .dataTables_wrapper {
+            padding-top: 0!important;
+        }
+    </style>
 </head>
 <body class="header-fix fix-sidebar">
 <!-- Main wrapper  -->
@@ -118,7 +125,7 @@ if ($initPayment){
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">Supplier Payment Entry</h3>
+                <h3 class="text-primary">Supplier Payment Paid</h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
@@ -127,11 +134,7 @@ if ($initPayment){
                 </ol>
             </div>
         </div>
-        <!-- End Bread crumb -->
-        <!-- Container fluid  -->
-        <div class="container-fluid">
 
-        </div>
         <div class="container-fluid">
             <!--    <a href="<?php echo base_url()?>Purchase/add_purchase" target="_blank"><button type="button" class="btn btn-primary  text-white" >Add Purchase</button></a>
                   -->
@@ -141,7 +144,6 @@ if ($initPayment){
             <!-- Start Page Content -->
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Purchase Paid Entry</h4>
                     <form method="post" action="" autocomplete="off">
                         <div class="row">
                             <div class="col-sm-4">
