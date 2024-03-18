@@ -109,12 +109,12 @@ if(!empty($fromDate) && !empty($toDate)){
                             </div>
                               <div class="col-sm-3">
                                   <label>Payment Date</label>
-                                 <input type="text" onfocus="this.type='date'" class="form-control" name="payment_date" id="payment_date"  placeholder="Payment Date"  value="<?=date ('m/d/Y')?>">
+                                 <input type="text" onfocus="this.type='date'" class="form-control" name="payment_date" id="payment_date"  placeholder="Payment Date"  value="<?=date ('m/d/Y')?>" style="pointer-events: none">
                               </div>
                               <div class="col-sm-3">
-                                  <label>Party Name</label>
+                                  <label>Supplier Name</label>
                                  <select class="form-control" name="party_name"   id="party_name" required>
-                                     <option value="">Select Party Name</option>
+                                     <option value="">Select Supplier Name</option>
                                     <?php foreach($supplierDetailsValue as $getsupplierDetails){ ?>
                                     <option value="<?php echo $getsupplierDetails->supplier_id ?>" dataselectedName="<?php echo $getsupplierDetails->supplier_name ?>"><?php echo $getsupplierDetails->supplier_name  ?></option>
                                     <?php } ?>
@@ -178,7 +178,7 @@ if(!empty($fromDate) && !empty($toDate)){
                             </div>
                             <div class="col-sm-3">
                                 <select class="form-control " name="company_name"   id="company_name" required>
-                                    <option value="">Party Name </option>
+                                    <option value="">Supplier Name </option>
                                     <?php foreach($supplierDetailsValue as $getsupplierDetails){  echo "<pre>";
                                         ?>
                                         <option value="<?php echo $getsupplierDetails->supplier_id  ?>"><?php echo $getsupplierDetails->supplier_name  ?></option>
@@ -202,7 +202,7 @@ if(!empty($fromDate) && !empty($toDate)){
                                  <th>Voucher #</th>
                                   <th>Company Name</th>
                                  <th>Payment Date</th>
-                                 <th>Party Name</th>
+                                 <th>Supplier Name</th>
                                  <th>Amount Paid</th>
                                  <th>Amount Paid By</th>
                                  <th>Mode of Payment</th>

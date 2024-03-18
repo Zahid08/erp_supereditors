@@ -37,7 +37,7 @@ function AmountInWords(float $amount)
 
 if (isset($_REQUEST['vc'])){
     $voucherNumber=$_REQUEST['vc'];
-    $advancePaymentDetails = $this->db->query("SELECT * FROM advance_payment_entry where voucher_no=$voucherNumber")->row();
+    $advancePaymentDetails = $this->db->query("SELECT * FROM advance_payment_entry where voucher_no='$voucherNumber'")->row();
     if ($advancePaymentDetails){
         $supplierId=$advancePaymentDetails->supplier_id;
         $getSupplier = $this->db->query("SELECT supplier_name FROM supplier where supplier_id=$supplierId")->row();
@@ -85,12 +85,10 @@ if (isset($_REQUEST['vc'])){
         <tr>
             <th style="padding: 6px;" class="middle-positions">SrNo</th>
             <th style="padding: 6px;" class="middle-positions">Amt Paid</th>
-            <th style="padding: 6px;" class="middle-positions">Amt Adj</th>
         </tr>
         <tr style="border-collapse: collapse; text-align: center; border-bottom : 2px solid #000;">
             <td style="padding: 6px; text-align: center;" class="middle-positions">1</td>
             <td style="padding: 6px; text-align: center;" class="middle-positions"><?=$advancePaymentDetails->amount_paid?></td>
-            <td style="padding: 6px; text-align: center;" class="middle-positions"><?=$advancePaymentDetails->amount_adjusted?></td>
         </tr>
         <tr style="border-bottom : 2px solid #000;">
             <td style="padding: 6px; text-align: center;" class="middle-positions"><strong>Total :</strong></td>
