@@ -15,13 +15,13 @@ if(!empty($_POST['c_name']) ){
 }
 
 
-if (isset($_POST['company_name'])){
-    $company_name=$_POST['company_name'];
+if (isset($_POST['supplier_name'])){
+    $supplierId=$_POST['supplier_name'];
 }
-if(!empty($company_name) && !empty($fromDate) AND !empty($toDate) ){
-    $where .= "AND a.supplier_id='$company_name' AND ";
+if(!empty($supplierId) && !empty($fromDate) AND !empty($toDate) ){
+    $where .= "AND a.supplier_id='$supplierId' AND ";
 }else{
-    $where .= " ";
+    $where .= " AND";
 }
 
 
@@ -177,7 +177,7 @@ if(!empty($fromDate) && !empty($toDate)){
                                 <input type = "text" class="form-control" name="to_date" id="to_date" placeholder="To Date" value="<?php echo $toDate ?>" onfocus="this.type='date'" required>
                             </div>
                             <div class="col-sm-3">
-                                <select class="form-control " name="company_name"   id="company_name" required>
+                                <select class="form-control " name="supplier_name"   id="company_name">
                                     <option value="">Supplier Name </option>
                                     <?php foreach($supplierDetailsValue as $getsupplierDetails){  echo "<pre>";
                                         ?>
