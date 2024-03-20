@@ -271,92 +271,89 @@ if(!empty($fromDate) && !empty($toDate)){
       <script src="<?php echo base_url(); ?>assets/client_asstes/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/client_asstes/js/lib/datatables/datatables-init.js"></script>
 
-   <script>
-       var warning    ='<?php echo base_url(); ?>assets/alert_image/warning.svg';
-       var successImage    ='<?php echo base_url(); ?>assets/alert_image/success.svg';
+      <script>
+          var redirectURL='<?php echo base_url() ?>Advance_payment_entry/generatedAdvancePdf?vc=';
+          var warning    ='<?php echo base_url(); ?>assets/alert_image/warning.svg';
+          var successImage    ='<?php echo base_url(); ?>assets/alert_image/success.svg';
 
-       // this is the id of the form
-       $("form#advancePaymentForm").submit(function(e) {
-           e.preventDefault();
+          // this is the id of the form
+          $("form#advancePaymentForm").submit(function(e) {
+              e.preventDefault();
 
-           $('button#submitbtn').html('Saving...');
-           $('button#submitbtn').addClass('not-clickable');
+              $('button#submitbtn').html('Saving...');
+              $('button#submitbtn').addClass('not-clickable');
 
-           var form = $(this);
-           var actionUrl = form.attr('action');
+              var form = $(this);
+              var actionUrl = form.attr('action');
 
-           $.ajax({
-               type: "POST",
-               url: actionUrl,
-               data: form.serialize(), // serializes the form's elements.
-               success: function(response)
-               {
-                   var obj                      = JSON.parse(response);
-                   var partyName                =$('select#party_name').find(':selected').attr('dataselectedName');
-                   var partyId                  =$('select#party_name').find(':selected').val();
+              $.ajax({
+                  type: "POST",
+                  url: actionUrl,
+                  data: form.serialize(), // serializes the form's elements.
+                  success: function(response)
+                  {
+                      var obj                      = JSON.parse(response);
+                      var partyName                =$('select#party_name').find(':selected').attr('dataselectedName');
+                      var partyId                  =$('select#party_name').find(':selected').val();
 
-                   cuteToast({
-                       type: "success", // or 'info', 'error', 'warning'
-                       message: "Successfully Save Advance Payment",
-                       timer: 5000,
-                       img:successImage,
-                   })
-                   setTimeout(function() {
-                       location.reload();
-                   }, 1000); // 3000 milliseconds = 3 seconds
+                      cuteToast({
+                          type: "success", // or 'info', 'error', 'warning'
+                          message: "Successfully Save Advance Payment",
+                          timer: 5000,
+                          img:successImage,
+                      })
 
-                   //location.reload();
+                      cuteAlert({
+                          type: "question",
+                          title: "PDF OPENING ALERT",
+                          message: "Do you want to Open PDF ?",
+                          confirmText: "Okay",
+                          cancelText: "Cancel",
+                          img:warning,
+                      }).then((e)=>{
+                          if ( e ==='confirm'){
+                              window.location.href=redirectURL+obj.voucher_no;
+                              //sendSms(obj.voucher_no,partyName,obj.amount_paid,obj.company_name,partyId);
+                          }
+                      });
 
-                   // cuteAlert({
-                   //     type: "question",
-                   //     title: "SMS SENDING ALERT",
-                   //     message: "Do you want to send SMS & Email to this Party ?",
-                   //     confirmText: "Okay",
-                   //     cancelText: "Cancel",
-                   //     img:warning,
-                   // }).then((e)=>{
-                   //     if ( e ==='confirm'){
-                   //         sendSms(obj.voucher_no,partyName,obj.amount_paid,obj.company_name,partyId);
-                   //     }
-                   // });
+                      $('button#submitbtn').html('Save');
+                      $('button#submitbtn').removeClass('not-clickable');
+                  }
+              });
 
-                   $('button#submitbtn').html('Save');
-                   $('button#submitbtn').removeClass('not-clickable');
-               }
-           });
+          });
 
-       });
+          function sendSms(voucher_no,partyName,amount_paid,company_name,partyId) {
 
-       function sendSms(voucher_no,partyName,amount_paid,company_name,partyId) {
+              var url = "<?php echo base_url('Advance_payment_entry/sendsms'); ?>";
+              var post_data = {
+                  'voucher_no': voucher_no,
+                  'partyName': partyName,
+                  'amount_paid': amount_paid,
+                  'company_name': company_name,
+                  'partyId': partyId,
+                  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+              };
+              $.ajax({
+                  url : url,
+                  type : 'POST',
+                  data: post_data,
+                  success : function(result)
+                  {
+                      if (result){
+                          cuteToast({
+                              type: "success", // or 'info', 'error', 'warning'
+                              message: "Successfully Send Sms and Email",
+                              timer: 5000,
+                              img:successImage,
+                          })
+                      }
+                  }
 
-           var url = "<?php echo base_url('Advance_payment_entry/sendsms'); ?>";
-           var post_data = {
-               'voucher_no': voucher_no,
-               'partyName': partyName,
-               'amount_paid': amount_paid,
-               'company_name': company_name,
-               'partyId': partyId,
-               '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
-           };
-           $.ajax({
-               url : url,
-               type : 'POST',
-               data: post_data,
-               success : function(result)
-               {
-                   if (result){
-                       cuteToast({
-                           type: "success", // or 'info', 'error', 'warning'
-                           message: "Successfully Send Sms and Email",
-                           timer: 5000,
-                           img:successImage,
-                       })
-                   }
-               }
+              });
+          }
 
-           });
-       }
-
-   </script>
+      </script>
    </body>
 </html>
