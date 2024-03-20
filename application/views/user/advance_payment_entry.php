@@ -20,8 +20,10 @@ if (isset($_POST['supplier_name'])){
 }
 if(!empty($supplierId) && !empty($fromDate) AND !empty($toDate) ){
     $where .= "AND a.supplier_id='$supplierId' AND ";
-}else{
+}elseif (!empty($fromDate) AND !empty($toDate)){
     $where .= " AND";
+}else{
+    $where .= " ";
 }
 
 
@@ -188,6 +190,7 @@ if(!empty($fromDate) && !empty($toDate)){
 
                             <div class="col-sm-2 " >
                                 <button type="submit" name="save" class="btn btn-primary">Search</button>
+                                <a href="<?php echo base_url() ?>Advance_payment_entry"><button type="button" name="save" class="btn btn-danger">Reset</button></a>
                             </div>
                         </div>
                     </form>
