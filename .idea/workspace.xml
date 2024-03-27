@@ -6,13 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="fddc8eea-df30-4a23-90f2-1b41820c36ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/AdvancePaymentReportPdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/AdvancePaymentReportPdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/user/advance_payment_entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/advance_payment_entry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/user/enquirylist.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/enquirylist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/user/purchase_paid_entry_supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/purchase_paid_entry_supplier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/user/supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/supplier.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/application/libraries/dompdf/composer.json" />
+      <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-css-parser/composer.json" />
+      <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-font-lib/composer.json" />
+      <option value="$PROJECT_DIR$/application/libraries/dompdf/lib/php-svg-lib/composer.json" />
+    </option>
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
@@ -29,6 +38,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\xampp7.4.9\php\php.exe" />
   <component name="ProjectId" id="2doJfZs2StfCk6hsYwZ7MIj4dcC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,11 +49,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,6 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710668602329</updated>
       <workItem from="1710668603688" duration="3644000" />
+      <workItem from="1711544252266" duration="1355000" />
     </task>
     <servers />
   </component>

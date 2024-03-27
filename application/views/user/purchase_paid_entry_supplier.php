@@ -33,7 +33,35 @@ if(!empty($voucher_no) && !empty($supplier_id)){
     $where = "WHERE s.is_active = 1";
 }
 
-$supplierDetailsValue = $this->db->query("SELECT * FROM supplier WHERE is_active = 1")->result();
+// Fetch data from the database
+$generatedSupplierData = $this->db->query("SELECT DISTINCT purchase_supplier_id FROM purchase_supplier_payment")->result();
+
+// Initialize an empty array to store the results
+$supplierArray = array();
+
+// Iterate through the result object and store values in the array
+foreach ($generatedSupplierData as $row) {
+    $supplierArray[] = $row->purchase_supplier_id;
+}
+
+
+$supplierDetailsValue=[];
+// Fetch supplier details where IDs match
+if (!empty($supplierArray)) {
+    // Convert array to comma-separated string
+    $supplierIDsString = implode(',', $supplierArray);
+
+
+
+    // Fetch details from supplier table
+    $query = "SELECT * FROM supplier WHERE is_active = 1 AND supplier_id IN ($supplierIDsString)";
+    $supplierDetailsValue = $this->db->query($query)->result();
+
+    // Now $supplierDetailsValue contains details of suppliers where the IDs match
+} else {
+    // Handle case where no supplier IDs were retrieved
+}
+
 $adjustmentDetails = $this->db->query("SELECT * FROM supplier s
                                              left JOIN advance_payment_entry a ON s.supplier_id = a.supplier_id
                                              $where")->result();
