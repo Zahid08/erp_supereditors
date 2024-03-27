@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fddc8eea-df30-4a23-90f2-1b41820c36ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/application/views/user/enquirylist.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/enquirylist.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/user/purchase_paid_entry_supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/purchase_paid_entry_supplier.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/user/supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/supplier.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/application/views/user/advance_payment_entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/advance_payment_entry.php" afterDir="false" />
+>>>>>>> 2b22e9c9d8ca8c9efba88be48988c2574d51f53a
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +51,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -60,6 +65,8 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+=======
+>>>>>>> 2b22e9c9d8ca8c9efba88be48988c2574d51f53a
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -75,5 +82,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
